@@ -18,8 +18,8 @@
 
                     {!! Form::open(['url' => "/courses/$course->id", 'method' => 'put']) !!}
                     
-                        {{ Form::label('nome', 'Nome') }}
-                        {{ Form::text('nome', $course->name) }}
+                        {{ Form::label('name', 'Nome') }}
+                        {{ Form::text('name', $course->name) }}
 
                         <br /><br />
 
@@ -29,7 +29,7 @@
                         <br /><br />
 
                         {{ Form::label('amount', 'Alunos Máximos') }}
-                        {{ Form::text('amount', $course->amount }}
+                        {{ Form::text('amount', $course->amount) }}
 
                         <br /><br />
 
