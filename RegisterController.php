@@ -52,6 +52,10 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'rg' => 'required|string|unique:users',
+            'cpf' => 'required|string|unique:users',
+            'cell_phone' => 'string|max:255',
+            'adress' => 'string|max:255',
         ]);
     }
 
@@ -66,11 +70,18 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            //'cpf' => $data['cpf'],
-            //'rg' => $data['rg'],
-            //'adress' => $data['adress'],
-            //'cell_phone' => $data['cell_phone'],
+            'cpf' => $data['cpf'],
+            'rg' => $data['rg'],
+            'adress' => $data['adress'],
+            'cell_phone' => $data['cell_phone'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function index($id)
+    {
+        $userId = User::findOrFail($id);
+
+        return view('/home', ['users' => $userId]);
     }
 }
