@@ -28,8 +28,8 @@
 
                         <br /><br />
                         
-                        {{ Form::label('amount_max', 'Alunos Máximos') }}
-                        {{ Form::text('amount_max') }}
+                        {{ Form::label('amount', 'Alunos Máximos') }}
+                        {{ Form::text('amount') }}
 
                         <br /><br />
                         

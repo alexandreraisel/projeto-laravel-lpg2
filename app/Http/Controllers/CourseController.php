@@ -14,7 +14,7 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::paginate(3);
 
         return view('courses/index', ['courses' => $courses]);
     }
@@ -30,7 +30,7 @@ class CourseController extends Controller
         $c = new Course;
         $c->name = $request->input('name');
         $c->menu = $request->input('menu');
-        $c->amount_max = $request->input('amount_max');
+        $c->amount = $request->input('amount');
         
         if ($c->save()) {
             \Session::flash('status', 'Curso criado com sucesso.');
@@ -41,18 +41,18 @@ class CourseController extends Controller
         }
     }
 
-    public function edit($id_course) {
-        $c = Course::findOrFail($id_course);
+    public function edit($id) {
+        $c = Course::findOrFail($id);
         
         return view('courses.edit', ['course' => $c]);
 
     }
 
-    public function update(Request $request, $id_course) {
-        $c = Course::findOrFail($id_course);
+    public function update(Request $request, $id) {
+        $c = Course::findOrFail($id);
         $c->name = $request->input('name');
         $c->menu = $request->input('menu');
-        $c->amount_max = $request->input('amount_max');
+        $c->amount = $request->input('amount');
         
         if ($c->save()) {
             \Session::flash('status', 'Curso atualizado com sucesso.');
@@ -63,8 +63,8 @@ class CourseController extends Controller
         }
     }
 
-    public function destroy($id_course) {
-        $c = Course::findOrFail($id_course);
+    public function destroy($id) {
+        $c = Course::findOrFail($id);
         $c->delete();
 
         \Session::flash('status', 'Curso excluído com sucesso.');

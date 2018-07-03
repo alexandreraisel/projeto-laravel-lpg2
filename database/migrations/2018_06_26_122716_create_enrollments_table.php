@@ -14,10 +14,10 @@ class CreateEnrollmentsTable extends Migration
     public function up()
     {
         Schema::create('enrollments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->Integer('id_student');
-            $table->Integer('id_course');
-            $table->Boolean('autorized')->default(false);
+            $table->increments('id_enrollment');
+            $table->integer('id_user');
+            $table->integer('id_course');
+            $table->boolean('autorized')->default(false);
             $table->timestamps();
         });
     }
